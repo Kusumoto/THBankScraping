@@ -20,7 +20,7 @@ $ npm install
 - [ ] Bangkok Bank
 
 ### Banking (Credit card)
-- [ ] Kasikorn Bank
+- [x] Kasikorn Bank
 - [ ] Siam Commercial Bank
 - [ ] TMB
 - [ ] Bank of Ayutthaya

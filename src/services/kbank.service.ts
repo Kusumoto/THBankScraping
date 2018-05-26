@@ -15,13 +15,18 @@ export class KbankService {
         this.httpOptions = httpOptions
     }
 
-    public execute(loginContext: LoginContext): Promise<KbankAccountSummary> {
+    public execute(loginContext: LoginContext): Promise<Array<KbankAccountSummary>> {
+        let accountFactory: Array<KbankAccountSummary> = []
         return this.login(loginContext).then((r1) => {
             return this.redirectToWelcomeActionPage(loginContext)
         }).then((r2) => {
-            return this.getAccountBalance(loginContext)
+            return this.getAccountBalance(KbankConstants.ACCOUNT_PORTAL_PAGE, "bank_account",loginContext)
         }).then((r3) => {
-            return r3
+            accountFactory = accountFactory.concat(r3)
+            return this.getAccountBalance(KbankConstants.CREDIT_PORTAL_PAGE, "credit_card",loginContext)
+        }).then((r4) => {
+            accountFactory = accountFactory.concat(r4)
+            return accountFactory
         })
     }
 
@@ -37,13 +42,14 @@ export class KbankService {
         })
     }
 
-    private getAccountBalance(loginContext: LoginContext): Promise<KbankAccountSummary> {
+    private getAccountBalance(url: string, accountType: string, loginContext: LoginContext): Promise<KbankAccountSummary> {
         let kbankResponseCollection: Array<KbankAccount> = []
-        return rp(KbankConstants.ACCOUNT_PORTAL_PAGE, this.httpOptions.Get(loginContext.cookieJar)).then((r1) => {
+        return rp(url, this.httpOptions.Get(loginContext.cookieJar)).then((r1) => {
             let $ = cheerio.load(r1)
             let accountDetail = $('td.inner_table_center').not('[colspan=2]').each((i, element) => {
                 element.children.map((data) => {
                     kbankResponseCollection.push({
+                        accountType: accountType,
                         bankAccount: data.data,
                         totalBalance: '',
                         totalUsedBalance: ''
@@ -52,6 +58,7 @@ export class KbankService {
             })
             let accountDetailBalance = $('td.inner_table_right').each((i, element) => {
                 element.children.map((data, i) => {
+                    if (data.data.trim() === "") return
                     for (let p = 0; p < kbankResponseCollection.length; p++) {
                         if (kbankResponseCollection[p].totalBalance === '' && kbankResponseCollection[p].totalUsedBalance === '') {
                             kbankResponseCollection[p].totalBalance = data.data

@@ -9,7 +9,7 @@ export class AppController {
   constructor(private readonly kbankService: KbankService) {}
 
   @Post("/kbank")
-  root(@Body() loginContext: LoginContext): Promise<KbankAccountSummary> {
+  root(@Body() loginContext: LoginContext): Promise<Array<KbankAccountSummary>> {
     loginContext.cookieJar = request.jar()
     return this.kbankService.execute(loginContext).then((res) => {
       return res
