@@ -1,5 +1,8 @@
 # THBank-Scraping
 
+## Notice
+*This project is 3rd party for scraping data from your internet banking. This is project unofficial and not support from bank, please careful for use.*
+
 ## Description
 
 Scraping total balance in your bank account from internet banking.
@@ -10,7 +13,7 @@ Scraping total balance in your bank account from internet banking.
 $ npm install
 ```
 
-## Banks Support
+## Support
 
 ### Banks (Accounting)
 - [x] Kasikorn Bank
