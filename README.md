@@ -10,16 +10,16 @@ Scraping total balance in your bank account from internet banking.
 $ npm install
 ```
 
-## Support Banking
+## Banks Support
 
-### Banking (Accounting)
+### Banks (Accounting)
 - [x] Kasikorn Bank
 - [ ] Siam Commercial Bank
 - [ ] TMB
 - [ ] Bank of Ayutthaya
 - [x] Bangkok Bank
 
-### Banking (Credit card)
+### Banks (Credit card)
 - [x] Kasikorn Bank
 - [ ] Siam Commercial Bank
 - [ ] TMB
