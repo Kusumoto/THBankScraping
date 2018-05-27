@@ -17,7 +17,7 @@ $ npm install
 - [ ] Siam Commercial Bank
 - [ ] TMB
 - [ ] Bank of Ayutthaya
-- [ ] Bangkok Bank
+- [x] Bangkok Bank
 
 ### Banking (Credit card)
 - [x] Kasikorn Bank

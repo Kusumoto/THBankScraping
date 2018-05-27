@@ -8,3 +8,8 @@ export class KbankConstants {
 export class ScbConstants {
     static readonly LOGIN_URL : string  = "https://m.scbeasy.com/online/easynet/mobile/login.aspx"
 }
+
+export class IBankingConstants {
+    static readonly LOGIN_URL : string  = "https://mbanking.bangkokbank.com/wapt/UserName_Password.aspx"
+    static readonly ACCOUNT_PORTAL_PAGE : string = "https://mbanking.bangkokbank.com/wapt/ViewAccounts.aspx"
+}
